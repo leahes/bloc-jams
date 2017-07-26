@@ -27,7 +27,7 @@ var albumPicasso = {
          { title: 'Wrong phone number', duration: '2:15'}
      ]
  };
- 
+
 
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -72,8 +72,6 @@ var setCurrentAlbum = function(album) {
  albumImage.addEventListener("click", function(event){
    setCurrentAlbum(albums[index]);
    index++;
-   if (index == albums.length){
-     index = 0;
    }
  });
 };
