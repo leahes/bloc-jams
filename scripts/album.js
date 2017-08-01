@@ -26,20 +26,7 @@ var albumPicasso = {
          { title: 'Can you hear me now?', duration: '3:14' },
          { title: 'Wrong phone number', duration: '2:15'}
      ]
- };
- var albumPrestigeWorldWide = {
-     title: 'The Classics',
-     artist: 'Dragon and Nighthawk',
-     label: 'EM',
-     year: '1999',
-     albumArtUrl: 'assets/images/album_covers/20.png',
-     songs: [
-         { title: 'Boats n Hoes', duration: '1:05' },
-         { title: 'Fergie and Jesus', duration: '5:05' },
-         { title: 'Lets give them something to talk about...', duration: '3:25'},
-         { title: 'Ball Fro', duration: '3:15' },
-         { title: 'Drum Solo', duration: '2:11'}
-     ]
+
  };
 
  var createSongRow = function(songNumber, songName, songLength) {
@@ -76,12 +63,4 @@ var setCurrentAlbum = function(album) {
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
-
- var albums = [albumPicasso, albumMarconi, albumPrestigeWorldWide];
- var index = 0;
- albumImage.addEventListener("click", function(event){
-   setCurrentAlbum(albums[index]);
-   index++;
-   }
- });
 };
