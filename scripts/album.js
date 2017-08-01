@@ -5,8 +5,8 @@ var albumPicasso = {
      year: '1881',
      albumArtUrl: 'assets/images/album_covers/01.png',
      songs: [
-         { title: 'Blue', duration: '4:26' },
-         { title: 'Green', duration: '3:14' },
+         { title: 'Blue Ivy', duration: '4:26' },
+         { title: 'Beyonce', duration: '3:14' },
          { title: 'Red', duration: '5:01' },
          { title: 'Pink', duration: '3:21'},
          { title: 'Magenta', duration: '2:15'}
@@ -28,6 +28,21 @@ var albumPicasso = {
      ]
 
  };
+
+ var albumPrestigeWorldWide = {
+     title: 'The Classics',
+     artist: 'Dragon and NightHawk',
+     label: 'EM',
+     year: '1909',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'Hello, Chewy?', duration: '1:05' },
+         { title: 'Did you touch my drumset?', duration: '5:05' },
+         { title: 'Why you so sweaty?', duration: '3:25'},
+         { title: 'Fergie and Jesus', duration: '3:15' },
+         { title: 'Boats and Hoes', duration: '2:11'}
+     ]
+};
 
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -62,5 +77,15 @@ var setCurrentAlbum = function(album) {
  };
 
  window.onload = function() {
+     console.log(index);
      setCurrentAlbum(albumPicasso);
+     var albums = [albumPicasso, albumMarconi, albumPrestigeWorldWide];
+     var index = 1;
+     albumimage.addEventListener("Click",function(events) {
+       setCurrentAlbum(albums[index]);
+       index++;
+       if (index == albums.length) {
+         index = 0;
+       }
+   });
 };
