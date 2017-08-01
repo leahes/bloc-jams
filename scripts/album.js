@@ -76,7 +76,6 @@ var setCurrentAlbum = function(album) {
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
- };
 
  var albums = [albumPicasso, albumMarconi, albumPrestigeWorldWide];
  var index = 0;
