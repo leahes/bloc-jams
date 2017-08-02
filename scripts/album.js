@@ -61,6 +61,9 @@ var setCurrentAlbum = function(album) {
      }
  };
 
+ var child = document.getElementsByClassName('album-view-title');
+ var noParent = document.querySelector('html');
+
  var findParentByClassName = function(element, targetClass) {
     if (element) {
         var currentParent = element.parentElement;
