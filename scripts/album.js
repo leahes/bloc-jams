@@ -77,11 +77,11 @@ var setCurrentAlbum = function(album) {
  };
 
  window.onload = function() {
-     console.log(index);
      setCurrentAlbum(albumPicasso);
      var albums = [albumPicasso, albumMarconi, albumPrestigeWorldWide];
      var index = 1;
-     albumimage.addEventListener("Click",function(events) {
+     albumImage.addEventListener("click",function(events) {
+       console.log(index);
        setCurrentAlbum(albums[index]);
        index++;
        if (index == albums.length) {
