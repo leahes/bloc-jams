@@ -61,34 +61,29 @@ var setCurrentAlbum = function(album) {
      }
  };
 
- var child = document.getElementsByClassName('album-view-title');
- var noParent = document.querySelector('html');
 
- var findParentByClassName = function(element, targetClass) {
+var findParentByClassName = function(element, targetClass) {
+  var currentParent = element.parentElement;
 
-   var currentParent = element.parentElement;
+  if (currentParent) {
+    while (currentParent.className !== targetClass && currentParent.className) {
+      currentParent = currentParent.parentElement;
+    }
 
-    if (currentParent) {
-        while (currentParent.className !== targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
-        }
-        if (currentParent.className == targetClass){
-          return currentParent;
-
-        } else {
-          alert("No parent found with that class name.");
-        }
-
-        } else {
-        alert("No parent found!");
-      }
-    };
+    if (currentParent.className === targetClass) {
+      return currentParent;
+    } else {
+      alert("No parent found with that class name.");
+    }
+  } else {
+    alert("No parent found!");
+  }
+};
 
 var getSongItem = function(element) {
     switch (element.className) {
       case 'album-song-button':
       case 'ion-play':
-            return findParentByClassName(element, "song-item-number")
       case 'ion-pause':
             return findParentByClassName(element, 'non-existent-target-class');
       case 'album-view-song-item':
