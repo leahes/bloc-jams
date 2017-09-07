@@ -25,10 +25,10 @@
             var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
             currentlyPlayingCell.html(currentlyPlayingSongNumber);
           }
-          
+
           if (currentlyPlayingSongNumber !== songNumber) {
             $(this).html(pauseButtonTemplate);
-            setSong.(songNumber);
+            setSong(songNumber);
             updatePlayerBarSong();
 
           } else if (currentlyPlayingSongNumber === songNumber) {
