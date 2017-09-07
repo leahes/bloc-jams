@@ -141,9 +141,10 @@
 
     };
 
-      var playButtonTemplate = '<span class="ion-play"></span>';
-      var pauseButtonTemplate = '<span class="ion-pause"></span>';
+    var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+    var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
+// added album-song-button back in, after checkpoint had you remove. didn't work"
 
       var currentAlbum = null;
       var currentlyPlayingSongNumber = null;
