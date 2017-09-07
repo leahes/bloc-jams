@@ -29,6 +29,7 @@
           if (currentlyPlayingSongNumber !== songNumber) {
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
+            currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
             updatePlayerBarSong();
 
           } else if (currentlyPlayingSongNumber === songNumber) {
