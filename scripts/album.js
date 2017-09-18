@@ -124,23 +124,13 @@
      };
 
      var setCurrentTimeInPlayerBar = function(currentTime) {
-    var $currentTimeElement = $('.seek-control .current-time');
-    $currentTimeElement.text(currentTime);
-};
+      var $currentTimeElement = $('.seek-control .current-time');
+      $currentTimeElement.text(currentTime);
+    };
 
       var setTotalTimeInPlayerBar = function(totalTime) {
           var $totalTimeElement = $('.seek-control .total-time');
           $totalTimeElement.text(totalTime);
-      };
-
-       var setCurrentTimeInPlayerBar = function(currentTime) {
-          var $currentTimeElement = $('.seek-control .current-time');
-          $currentTimeElement.text(currentTime);
-      };
-
-      var setTotalTimeInPlayerBar = function(totalTime) {
-        var $totalTimeElement = $('.seek-control .total-time');
-        $totalTimeElement.text(totalTime);
       };
 
       var filterTimeCode = function(timeInSeconds) {
@@ -149,7 +139,6 @@
     var seconds = Number.parseFloat(timeInSeconds);
     var wholeSeconds = Math.floor(seconds);
     var minutes = Math.floor(wholeSeconds / 60);
-
     var remainingSeconds = wholeSeconds % 60;
     var output = minutes + ':';
 
@@ -172,7 +161,7 @@
 
         var lastSongNumber = currentlyPlayingSongNumber;
         setSong(currentSongIndex + 1);
-        currentSoundFile.play();
+
         currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
         updateSeekBarWhileSongPlays();
 
@@ -214,7 +203,7 @@
       $('.currently-playing .artist-name').text(currentAlbum.artist);
       $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
       $('.main-controls .play-pause').html(playerBarPauseButton);
-      
+
 
       setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
 
@@ -274,7 +263,6 @@
              var currentTime = this.getTime();
              var songLength = this.getDuration();
              var seekBarFillRatio = currentTime / songLength;
-             // var seekBarFillRatio = currentTime / songLength;
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
@@ -282,7 +270,6 @@
          });
      }
  };
-
 
 
     var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
