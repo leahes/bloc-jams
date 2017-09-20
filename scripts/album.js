@@ -168,10 +168,10 @@
 
 
         currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+        currentSoundFile.play();
         updatePlayerBarSong();
         updateSeekBarWhileSongPlays();
         setSong(currentSongIndex + 1);
-
 
         var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
         var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
