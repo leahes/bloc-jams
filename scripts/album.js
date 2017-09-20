@@ -9,7 +9,7 @@
 
      var $row = $(template);
 
-       var setSong = function(songNumber) {
+    var setSong = function(songNumber) {
          if (currentSoundFile) {
               currentSoundFile.stop();
          }
@@ -172,7 +172,7 @@
         updateSeekBarWhileSongPlays();
         setSong(currentSongIndex + 1);
 
-      
+
         var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
         var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
 
@@ -220,8 +220,9 @@
             $currentlyPlayingCell.html(pauseButtonTemplate);
             $(this).html(playerBarPauseButton);
             currentSoundFile.play();
+            updateSeekBarWhileSongPlays();
 
-          } else if (currentSoundFile) {
+          } else {
             $currentlyPlayingCell.html(playButtonTemplate);
             $(this).html(playerBarPlayButton)
             currentSoundFile.pause();
@@ -286,8 +287,8 @@
 
       var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
       var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
-      var playerBarPlayButton = '<span class="ion-play"></span>'
-      var playerBarPauseButton = '<span class="ion-pause"></span>'
+      var playerBarPlayButton = '<span class="ion-play"></span>';
+      var playerBarPauseButton = '<span class="ion-pause"></span>';
 
 // added album-song-button back in, after checkpoint had you remove. didn't work"
       var currentAlbum = null;
