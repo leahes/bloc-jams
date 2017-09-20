@@ -13,6 +13,7 @@
          if (currentSoundFile) {
               currentSoundFile.stop();
          }
+
          currentlyPlayingSongNumber = parseInt(songNumber);
          currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
          currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
@@ -27,7 +28,7 @@
          if (currentSoundFile) {
              currentSoundFile.setTime(time);
          }
-     }
+     };
 
      var setVolume = function(volume){
        if (currentSoundFile) {
@@ -51,14 +52,16 @@
             setSong(songNumber);
             currentSoundFile.play();
             $(this).html(pauseButtonTemplate);
+            currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
             updateSeekBarWhileSongPlays();
+            updatePlayerBarSong();
 
             var $volumeFill = $('.volume .fill');
             var $volumeThumb = $('.volume .thumb');
             $volumeFill.width(currentVolume + '%');
             $volumeThumb.css({left: currentVolume + '%'});
 
-            updatePlayerBarSong();
+
 
           } else if (currentlyPlayingSongNumber === songNumber) {
             if (currentSoundFile.isPaused()) {
@@ -135,20 +138,19 @@
 
       var filterTimeCode = function(timeInSeconds) {
 
+        var seconds = Number.parseFloat(timeInSeconds);
+        var wholeSeconds = Math.floor(seconds);
+        var minutes = Math.floor(wholeSeconds / 60);
+        var remainingSeconds = wholeSeconds % 60;
+        var output = minutes + ':';
 
-    var seconds = Number.parseFloat(timeInSeconds);
-    var wholeSeconds = Math.floor(seconds);
-    var minutes = Math.floor(wholeSeconds / 60);
-    var remainingSeconds = wholeSeconds % 60;
-    var output = minutes + ':';
+        if (remainingSeconds < 10) {
+            output += '0';
+        }
 
-    if (remainingSeconds < 10) {
-        output += '0';
-    }
-
-    output += remainingSeconds;
-    return output;
-};
+        output += remainingSeconds;
+        return output;
+    };
 
 
      var trackIndex = function(album, song) {
@@ -204,9 +206,7 @@
       $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
       $('.main-controls .play-pause').html(playerBarPauseButton);
 
-
       setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
-
     };
 
     var togglePlayFromPlayerbar = function() {
@@ -228,20 +228,17 @@
 
       $seekBars.click(function(event) {
 
-          var offsetX = event.pageX - $(this).offset().left;
-          var barWidth = $(this).width();
-
-          var seekBarFillRatio = offsetX / barWidth;
-
-
-          updateSeekPercentage($(this), seekBarFillRatio);
+        var offsetX = event.pageX - $(this).offset().left;
+        var barWidth = $(this).width();
+        var seekBarFillRatio = offsetX / barWidth;
+  
+        updateSeekPercentage($(this), seekBarFillRatio);
       });
 
       $seekBars.find('.thumb').mousedown(function(event) {
 
-            var $seekBar = $(this).parent();
-
-            $(document).bind('mousemove.thumb', function(event){
+          var $seekBar = $(this).parent();
+          $(document).bind('mousemove.thumb', function(event){
                 var offsetX = event.pageX - $seekBar.offset().left;
                 var barWidth = $seekBar.width();
                 var seekBarFillRatio = offsetX / barWidth;
@@ -258,8 +255,7 @@
 
   var updateSeekBarWhileSongPlays = function() {
      if (currentSoundFile) {
-
-         currentSoundFile.bind('timeupdate', function(event) {
+       currentSoundFile.bind('timeupdate', function(event) {
              var currentTime = this.getTime();
              var songLength = this.getDuration();
              var seekBarFillRatio = currentTime / songLength;
@@ -278,19 +274,17 @@
       offsetXPercent = Math.max(0, offsetXPercent);
       offsetXPercent = Math.min(100, offsetXPercent);
 
-
       var percentageString = offsetXPercent + '%';
       $seekBar.find('.fill').width(percentageString);
       $seekBar.find('.thumb').css({left: percentageString});
     };
 
-    var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
-    var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
-    var playerBarPlayButton = '<span class="ion-play"></span>'
-    var playerBarPauseButton = '<span class="ion-pause"></span>'
+      var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+      var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
+      var playerBarPlayButton = '<span class="ion-play"></span>'
+      var playerBarPauseButton = '<span class="ion-pause"></span>'
 
 // added album-song-button back in, after checkpoint had you remove. didn't work"
-
       var currentAlbum = null;
       var currentlyPlayingSongNumber = null;
       var currentSongFromAlbum = null;
